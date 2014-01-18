@@ -9,6 +9,9 @@ clearest or most optimized since I want to represent solutions I wrote with
 minimal help. Remember to try a problem on your own before looking at the
 answers!
 
+Sources
+-------
+
 The problems come from these sources:
 
 + [Canadian Computing Competition (ccc)](http://cemc.uwaterloo.ca/Contests/past_contests.html#ccc)
@@ -18,12 +21,12 @@ The problems come from these sources:
 + [Sphere Online Judge (spoj)](http://www.spoj.com/)
 
 
-Compiling
----------
+Compiling and Running
+---------------------
 
 The C++ solutions will compile with:
 
-  g++ -std=c++11 -Wall -pedantic
+    g++ -std=c++11 -Wall -pedantic
 
 The Python solutions run with the standard CPython 3.3.
 
