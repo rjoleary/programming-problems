@@ -11,8 +11,29 @@ answers!
 
 The problems come from these sources:
 
-+ [Canadian Computing Competition (ccc)]{http://cemc.uwaterloo.ca/Contests/past_contests.html#ccc}
-+ [ECOO Programming Contest (ecoo)]{http://ecoocs.org/past.php}
-+ [Programming Challenges]{http://uva.onlinejudge.org/}
-+ [Project Euler (pe)]{http://projecteuler.net/}
-+ [Sphere Online Judge (spoj)]{http://www.spoj.com/}
++ [Canadian Computing Competition (ccc)](http://cemc.uwaterloo.ca/Contests/past_contests.html#ccc)
++ [ECOO Programming Contest (ecoo)](http://ecoocs.org/past.php)
++ [Programming Challenges](http://uva.onlinejudge.org/)
++ [Project Euler (pe)](http://projecteuler.net/)
++ [Sphere Online Judge (spoj)](http://www.spoj.com/)
+
+
+Compiling
+---------
+
+The C++ solutions will compile with:
+
+  g++ -std=c++11 -Wall -pedantic
+
+The Python solutions run with the standard CPython 3.3.
+
+Lua solutions work with the latest LuaJIT.
+
+I'm not as certain about the Haskell and Scheme solutions. I used GHC for
+Haskell and DrRacket for Scheme.
+
+
+License
+-------
+
+The license is found in the `LICENSE.txt` file.
