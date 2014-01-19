@@ -17,7 +17,7 @@ The problems come from these sources:
 + [Canadian Computing Competition (ccc)](http://cemc.uwaterloo.ca/Contests/past_contests.html#ccc)
 + [ECOO Programming Contest (ecoo)](http://ecoocs.org/past.php)
 + [Programming Challenges](http://uva.onlinejudge.org/)
-+ [Project Euler (pe)](http://projecteuler.net/)
++ [Project Euler (project-euler)](http://projecteuler.net/)
 + [Sphere Online Judge (spoj)](http://www.spoj.com/)
 
 
@@ -34,6 +34,14 @@ Lua solutions work with the latest LuaJIT.
 
 I'm not as certain about the Haskell and Scheme solutions. I used GHC for
 Haskell and DrRacket for Scheme.
+
+
+Test Cases
+----------
+
+I don't provide many test cases. If you want to test them, ECOO and CCC provide
+test cases on their website, SPOJ and UVa have online judges and the solutions
+for Project Euler can be checked from their website.
 
 
 License
