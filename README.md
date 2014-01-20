@@ -43,6 +43,9 @@ I don't provide many test cases. If you want to test them, ECOO and CCC provide
 test cases on their website, SPOJ and UVa have online judges and the solutions
 for Project Euler can be checked from their website.
 
+I added a short script `test.sh` to compare the outputs of the Project Euler
+solutions with the answers located in the file `answers.txt`.
+
 
 License
 -------
