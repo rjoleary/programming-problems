@@ -19,10 +19,10 @@ int main()
 
 int getNumberLength(int x)
 {
-    int digit4 = (x / 1000) % 10;
-    int digit3 = (x / 100)  % 10;
-    int digit2 = (x / 10)   % 10;
-    int digit1 =  x         % 10;
+    int digit4 = x / 1000 % 10;
+    int digit3 = x / 100  % 10;
+    int digit2 = x / 10   % 10;
+    int digit1 = x        % 10;
 
     int length = 0;
 
