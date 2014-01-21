@@ -4,9 +4,10 @@
 typedef std::int64_t Scalar;
 
 // Calculate the binomial coefficient using recursion and memoization.
-Scalar memo[21][21] = {0};
 Scalar findRoutes(int x, int y)
 {
+    static Scalar memo[21][21];
+
     if (x == 0 && y == 0)
         return 1;
 

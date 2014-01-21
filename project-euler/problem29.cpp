@@ -16,11 +16,11 @@ int main()
         for (int b = 2; b <= 100; b++)
         {
             int carry = 0;
-            for (int i = 0; i < power.size(); i++)
+            for (auto &digit : power)
             {
-                int digit = power[i] * a + carry;
-                power[i] = digit % 10;
-                carry = digit / 10;
+                int value = digit * a + carry;
+                digit = value % 10;
+                carry = value / 10;
             }
             powers.insert(power);
         }

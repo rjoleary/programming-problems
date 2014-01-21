@@ -1,14 +1,13 @@
 #include <cassert>
 #include <iostream>
 
-// Return the number of days in a specific month/year.
 int getDaysInMonth(int month, int year);
 bool isLeapYear(int year);
 
 int main()
 {
     // 0 - Monday, 1 - Tuesday, ... , 6 - Sunday
-    int dayOfWeek = 0;
+    int dayOfWeek = 365 % 7;
 
     int sum = 0;
     for (int year = 1901; year <= 2000; year++)
