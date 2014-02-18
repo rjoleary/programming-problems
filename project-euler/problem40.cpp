@@ -2,20 +2,18 @@
 #include <sstream>
 #include <string>
 
-using std::cout;
-using std::ostringstream;
-using std::string;
-
 int main()
 {
-	ostringstream ss;
-	
-	for (unsigned i = 1; ss.tellp() < 1000000; i++)
-	{
-		ss << i;
-	}
+    std::ostringstream ss;
 
-	string s = ss.str();
+    for (int i = 1; ss.tellp() < 1000000; i++)
+        ss << i;
 
-	cout << (s[99]-'0') * (s[999]-'0') * (s[9999]-'0') * (s[99999]-'0') * (s[999999]-'0') << '\n';
+    std::string s = ss.str();
+
+    std::cout << (s[99]     - '0') *
+                 (s[999]    - '0') *
+                 (s[9999]   - '0') *
+                 (s[99999]  - '0') *
+                 (s[999999] - '0') << '\n';
 }
