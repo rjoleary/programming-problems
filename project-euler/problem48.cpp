@@ -38,7 +38,7 @@ void addTo(int* lhs, const int* rhs)
 
 void mulBy(int* lhs, int rhs)
 {
-    for (int i = 0; i < digitCount; i--)
+    for (int i = 0; i < digitCount; i++)
         lhs[i] *= rhs;
 
     for (int i = 0; i < digitCount; i++)
