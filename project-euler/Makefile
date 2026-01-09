@@ -20,12 +20,14 @@ all: $(EXES)
 
 testall: $(TESTS)
 
-test%: build/problem%.stdout answers.txt
-	cat $<
-	grep "$*: $$(cat $<)" answers.txt
+build/problem%.answer: answers.txt
+	@awk -v k="$*" '$$1==k":" {print $$2; exit}' answers.txt > $@
+
+test%: build/problem%.stdout build/problem%.answer
+	@diff $^
 
 build/%.stdout: build/%
-	time $< > $@
+	$< > $@
 
 build/%: %.cpp
 	mkdir -p build/
