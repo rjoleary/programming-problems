@@ -2,8 +2,79 @@
 #include <numeric>
 
 struct BigNum {
+    std::vector<uint8_t> digits; // little-endian
 
+    BigNum() {
+    }
+
+    BigNum(size_t val) {
+        while (val) {
+            digits.push_back(val % 10);
+            val /= 10;
+        }
+    }
+
+    BigNum operator+(const BigNum &other) const {
+        BigNum sum;
+        size_t maxSize = std::max(digits.size(), other.digits.size());
+        sum.digits.reserve(maxSize + 1);
+
+        uint8_t carry = 0;
+        for (size_t i = 0; i < maxSize + 1; i++) {
+            uint16_t digitSum = carry;
+            if (i < digits.size()) {
+                digitSum += digits[i];
+            }
+            if (i < other.digits.size()) {
+                digitSum += other.digits[i];
+            }
+            carry = digitSum / 10;
+            digitSum %= 10;
+            sum.digits.push_back(digitSum);
+        }
+        while (!sum.digits.empty() && sum.digits.back() == 0) {
+            sum.digits.pop_back();
+        }
+        return sum;
+    }
+
+    BigNum operator*(const BigNum &other) const {
+        BigNum product;
+        for (size_t i = 0; i < digits.size(); i++) {
+            BigNum copy = other;
+            for (auto &d : copy.digits) {
+                d *= digits[i]; // max = 9 * 9 = 81 < 256
+            }
+            copy.digits.insert(copy.digits.begin(), i, 0); // shift
+            product = product + copy;
+        }
+        return product;
+    }
+
+    bool operator==(const BigNum &other) const {
+        size_t maxSize = std::max(digits.size(), other.digits.size());
+        for (size_t i = 0; i < maxSize; i++) {
+            if (i >= digits.size() && other.digits[i] != 0) {
+                return false;
+            } else if (i >= other.digits.size() && digits[i] != 0) {
+                return false;
+            } else if (digits[i] != other.digits[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 };
+
+std::ostream & operator<<(std::ostream &s, const BigNum &bn) {
+    if (bn.digits.empty()) {
+        s << 0;
+    }
+    for (auto it = bn.digits.crbegin(); it != bn.digits.crend(); ++it) {
+        s << (int)*it;
+    }
+    return s;
+}
 
 typedef BigNum Num;
 
@@ -24,11 +95,11 @@ class ECFConstants {
   public:
     class Iterator {
         Num nextEven;
-        Num numOnes;
+        size_t numOnes;
         Num a;
 
         friend class ::ECFConstants;
-        Iterator(Num nextEven, Num numOnes, Num a)
+        Iterator(Num nextEven, size_t numOnes, Num a)
             : nextEven(nextEven)
             , numOnes(numOnes)
             , a(a) {
@@ -44,7 +115,7 @@ class ECFConstants {
             if (numOnes == 0) {
                 numOnes = 2;
                 a = nextEven;
-                nextEven += 2;
+                nextEven = nextEven + 2;
             } else {
                 numOnes--;
                 a = 1;
@@ -53,7 +124,7 @@ class ECFConstants {
         }
 
         // In theory, there is no end. This never matches end.
-        bool operator!=(const Iterator &other) const {
+        bool operator!=(const Iterator &) const {
             return true;
         }
     };
@@ -99,7 +170,7 @@ class ECF {
         }
 
         // In theory, there is no end. This never matche end.
-        bool operator!=(const Iterator &ecf) const {
+        bool operator!=(const Iterator &) const {
             return true;
         }
     };
@@ -115,17 +186,18 @@ class ECF {
 
 void printExpansionsOfE() {
     for (const auto fraction : ECF()) {
-        std::cout << fraction.num << '/' << fraction.den << " = " << double(fraction.num) / double(fraction.den) << '\n';
+        std::cout << fraction.num << '/' << fraction.den << '\n';
     }
 }
 
 int main() {
-    // Debug: printExapansionsOfE();
+    // Debug: printExpansionsOfE();
 
     auto cf = ECF().begin();
     for (int i = 0; i < 99; i++) {
         ++cf;
     }
-    std::cout << (*cf).num << '\n';
+    const auto &digits = (*cf).num.digits;
+    std::cout << std::accumulate(digits.begin(), digits.end(), 0) << '\n';
     return 0;
 }
